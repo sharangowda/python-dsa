@@ -71,7 +71,7 @@ class LinkedList:
             temp = self.head
             for _ in range(index):
                 temp = temp.next
-            return temp
+            return temp.value
 
     def set_value(self, index, value):
         temp = self.get(index)
@@ -117,13 +117,31 @@ class LinkedList:
         temp = self.head
         self.head = self.tail
         self.tail = temp
-        next = temp.next
+        after = temp.next
         pre = None
         for _ in range(self.length):
-            next = temp.next
+            after = temp.next
             temp.next = pre
             pre = temp
-            temp = next
+            temp = after
+
+
+def find_kth_value_from_back(linkedList, index):
+    temp = linkedList.head
+    linkedList.head = linkedList.tail
+    linkedList.tail = temp
+    before = None
+    after = temp.next
+    for _ in range(linkedList.length):
+        after = temp.next
+        temp.next = before
+        before = temp
+        temp = after
+    reversed = linkedList
+    temp = reversed.head
+    for _ in range(index):
+        temp = temp.next
+    return temp.value
 
 
 new_ll = LinkedList(4)
@@ -135,9 +153,12 @@ new_ll.prepend(2)
 new_ll.prepend(1)
 # new_ll.insert(6, 10)
 # new_ll.print_value()
-# print("-------------------------------------------------------------")
+# print("-----------------------------------------------------------")
 # new_ll.remove(6)
-new_ll.reverse()
-new_ll.pop()
+# new_ll.reverse()
+# print("-------------------------------------------------------------")
+# print(f"{new_ll.get(2)} is the get value.")
 new_ll.print_value()
 print("-------------------------------------------------------------")
+new = find_kth_value_from_back(new_ll, 0)
+print(new)
