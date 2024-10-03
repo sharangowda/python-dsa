@@ -125,31 +125,75 @@ class LinkedList:
             pre = temp
             temp = after
 
+    # def remove_duplicates(self):
+    #     fast = self.head
+    #     slow = self.head
+    #     while fast:
+    #         fast = fast.next
+    #         if fast.value == slow.value:
+    #             slow.next = fast.next
+    #             fast = fast.next
+    #             self.length -= 1
+    #         slow = slow.next
+
 
 def find_kth_value_from_back(linkedList, index):
-    temp = linkedList.head
-    linkedList.head = linkedList.tail
-    linkedList.tail = temp
-    before = None
-    after = temp.next
-    for _ in range(linkedList.length):
-        after = temp.next
-        temp.next = before
-        before = temp
-        temp = after
-    reversed = linkedList
-    temp = reversed.head
+    # temp = linkedList.head
+    # linkedList.head = linkedList.tail
+    # linkedList.tail = temp
+    # before = None
+    # after = temp.next
+    # for _ in range(linkedList.length):
+    #     after = temp.next
+    #     temp.next = before
+    #     before = temp
+    #     temp = after
+    # reversed = linkedList
+    # temp = reversed.head
+    # for _ in range(index):
+    #     temp = temp.next
+    # return temp.value
+    slow = linkedList.head
+    fast = linkedList.head
     for _ in range(index):
+        if fast is None:
+            return None
+        fast = fast.next
+    while fast:
+        slow = slow.next
+        fast = fast.next
+    return slow.value
+
+
+def remove_duplicates(ll):
+    slow = ll.head
+    fast = ll.head
+    while fast:
+        fast = fast.next
+        # print(fast)
+        if slow.value == fast.value:
+            slow.next = fast.next
+            # fast = fast.next
+        slow = slow.next
+    return ll
+
+
+def printVal(ll):
+    temp = ll.head
+    while temp:
+        print(temp.value)
         temp = temp.next
-    return temp.value
 
 
 new_ll = LinkedList(4)
 new_ll.append(5)
 new_ll.append(6)
 new_ll.append(7)
+new_ll.append(7)
 new_ll.prepend(3)
 new_ll.prepend(2)
+new_ll.prepend(1)
+new_ll.prepend(1)
 new_ll.prepend(1)
 # new_ll.insert(6, 10)
 # new_ll.print_value()
@@ -160,5 +204,7 @@ new_ll.prepend(1)
 # print(f"{new_ll.get(2)} is the get value.")
 new_ll.print_value()
 print("-------------------------------------------------------------")
-new = find_kth_value_from_back(new_ll, 0)
-print(new)
+# new_ll.remove_duplicates()
+new_ll.print_value()
+# new = find_kth_value_from_back(new_ll, 1)
+# print(new)
