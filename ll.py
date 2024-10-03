@@ -178,6 +178,15 @@ def remove_duplicates(ll):
     return ll
 
 
+def binary_to_decimal(ll):
+    sum = 0
+    temp = ll.head
+    while temp:
+        sum = (sum*2)+temp.value
+        temp = temp.next
+    return sum
+
+
 def printVal(ll):
     temp = ll.head
     while temp:
@@ -185,16 +194,12 @@ def printVal(ll):
         temp = temp.next
 
 
-new_ll = LinkedList(4)
-new_ll.append(5)
-new_ll.append(6)
-new_ll.append(7)
-new_ll.append(7)
-new_ll.prepend(3)
-new_ll.prepend(2)
-new_ll.prepend(1)
-new_ll.prepend(1)
-new_ll.prepend(1)
+new_ll = LinkedList(1)
+new_ll.append(0)
+new_ll.append(1)
+new_ll.append(1)
+new_ll.append(0)
+new_ll.append(1)
 # new_ll.insert(6, 10)
 # new_ll.print_value()
 # print("-----------------------------------------------------------")
@@ -205,6 +210,9 @@ new_ll.prepend(1)
 new_ll.print_value()
 print("-------------------------------------------------------------")
 # new_ll.remove_duplicates()
-new_ll.print_value()
+# new_ll.print_value()
 # new = find_kth_value_from_back(new_ll, 1)
 # print(new)
+
+bin = binary_to_decimal(new_ll)
+print(bin)
